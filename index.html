@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sesión 1 — Escribir el sistema antes de construirlo · DiDE</title>
+<meta name="description" content="Guion completo de la Sesión 1 de la formación práctica en cognición aumentada para la DiDE: seis slides conceptuales y las ocho preguntas del spec en vivo." />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============ BARRA DE MODO ============ -->
+<div class="modebar">
+  <div class="modebar__in">
+    <span class="modebar__id">DiDE · <b>Sesión 1</b></span>
+    <div class="modebar__right">
+      <span class="modebar__id modebar__now">Modo consulta</span>
+      <button class="btn" id="btn-present" type="button">Modo presentación <kbd>P</kbd></button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PORTADA ============ -->
+<header class="cover wrap">
+  <span class="accent-bar" aria-hidden="true"></span>
+  <span class="kicker cover__kicker">Formación práctica en cognición aumentada · <b>Sesión 1</b></span>
+  <h1>Escribir el sistema <em>antes</em> de construirlo</h1>
+  <p class="cover__lead">
+    El guion completo de la sesión: seis ideas para llegar a la noción de spec,
+    los ocho pasos resueltos en vivo con el equipo, y un ejemplo terminado.
+  </p>
+  <div class="cover__meta">
+    <div><span class="kicker">Para</span><span class="v">17 personas de la DiDE</span></div>
+    <div><span class="kicker">Bloque 1</span><span class="v">Presentación · 15–17 min</span></div>
+    <div><span class="kicker">Bloque 2</span><span class="v">Spec en vivo · 25 min</span></div>
+    <div><span class="kicker">Cierre</span><span class="v">Cada quien escribe su spec</span></div>
+  </div>
+</header>
+
+<!-- ============ BLOQUE 1 ============ -->
+<section class="section">
+  <div class="wrap cols">
+    <div class="rail">
+      <span class="accent-bar" aria-hidden="true"></span>
+      <span class="kicker">01 /</span>
+      <h2>Bloque 1 — Presentación</h2>
+      <span class="rail__note">Ideas 01–06 · 15–17 min</span>
+    </div>
+    <div id="bloque-1"></div>
+  </div>
+</section>
+
+<!-- ============ TRANSICIÓN ============ -->
+<section class="section">
+  <div class="wrap cols">
+    <div class="rail">
+      <span class="kicker">↓</span>
+    </div>
+    <div>
+      <p class="v-quote">De la idea de spec a las ocho preguntas: dejamos de explicar y empezamos a responderlas juntos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUE 2 ============ -->
+<section class="section">
+  <div class="wrap cols">
+    <div class="rail">
+      <span class="accent-bar" aria-hidden="true"></span>
+      <span class="kicker">02 /</span>
+      <h2>Bloque 2 — Spec en vivo</h2>
+      <span class="rail__note">Ocho pasos · 25 min</span>
+    </div>
+    <div id="bloque-2"></div>
+  </div>
+</section>
+
+<!-- ============ EJEMPLO DE SPEC ============ -->
+<section class="section">
+  <div class="wrap cols">
+    <div class="rail">
+      <span class="accent-bar" aria-hidden="true"></span>
+      <span class="kicker">03 /</span>
+      <h2>Ejemplo de spec</h2>
+      <span class="rail__note">El spec con el que se construyó esta página</span>
+    </div>
+    <div id="ejemplo"></div>
+  </div>
+</section>
+
+<footer class="foot wrap">
+  <span>DiDE · Cognición aumentada · Sesión 1</span>
+  <span>Escribir el sistema antes de construirlo</span>
+</footer>
+
+<!-- ============ MODO PRESENTACIÓN ============ -->
+<div class="deck" id="deck" hidden tabindex="-1" role="region" aria-label="Modo presentación">
+  <div class="deck__top">
+    <span id="deck-label"></span>
+    <span id="deck-count"></span>
+  </div>
+  <div class="deck__stage" id="deck-stage"></div>
+  <div class="deck__bottom">
+    <div class="deck__nav">
+      <button class="btn" id="deck-prev" type="button" aria-label="Slide anterior">←</button>
+      <button class="btn" id="deck-next" type="button" aria-label="Slide siguiente">→</button>
+    </div>
+    <span class="deck__prog" aria-hidden="true"><i id="deck-prog"></i></span>
+    <div class="deck__nav">
+      <button class="btn" id="deck-notes" type="button">Es decir <kbd>N</kbd></button>
+      <button class="btn" id="deck-close" type="button">Salir <kbd>Esc</kbd></button>
+    </div>
+  </div>
+</div>
+
+<noscript>
+  <p class="wrap" style="padding-block:2rem">Esta página necesita JavaScript para componer los slides.</p>
+</noscript>
+
+<script src="app.js"></script>
+</body>
+</html>

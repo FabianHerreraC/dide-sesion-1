@@ -12,7 +12,11 @@
 <!-- ============ BARRA DE MODO ============ -->
 <div class="modebar">
   <div class="modebar__in">
-    <span class="modebar__id">DiDE · <b>Sesión 1</b></span>
+    <nav class="modebar__nav" aria-label="Sesiones">
+        <span class="modebar__id">DiDE ·</span>
+        <a class="tab is-on" href="index.html" aria-current="page">Sesión 1</a>
+        <a class="tab" href="sesion-2.html">Sesión 2</a>
+      </nav>
     <div class="modebar__right">
       <span class="modebar__id modebar__now">Modo consulta</span>
       <button class="btn" id="btn-present" type="button">Modo presentación <kbd>P</kbd></button>
@@ -117,6 +121,7 @@
   <p class="wrap" style="padding-block:2rem">Esta página necesita JavaScript para componer los slides.</p>
 </noscript>
 
+<script src="deck.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

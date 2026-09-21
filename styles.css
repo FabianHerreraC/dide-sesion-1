@@ -456,3 +456,161 @@ body.is-presenting { overflow: hidden; }
 @media (max-width: 620px) {
   .ans__row { grid-template-columns: 1fr; gap: .2rem; }
 }
+
+/* =====================================================================
+   PESTAÑAS DE SESIÓN EN LA BARRA DE MODO
+   ===================================================================== */
+.modebar__nav { display: flex; align-items: center; gap: .55rem; }
+.tab {
+  font-family: var(--font-mono);
+  font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  padding: .3rem .55rem;
+  border: .25pt solid transparent;
+}
+.tab:hover { color: var(--ink); border-color: var(--rule-hard); }
+.tab.is-on { color: var(--ink); background: var(--chartreuse); }
+.tab:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* =====================================================================
+   SESIÓN 2 — MOMENTOS DEL TALLER
+   ===================================================================== */
+.mom {
+  border-top: .25pt solid var(--rule-hard);
+  padding-block: 1.9rem;
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1.5rem;
+}
+.mom:first-child { border-top: 0; padding-top: 0; }
+@media (max-width: 560px) { .mom { grid-template-columns: 1fr; gap: .7rem; } }
+
+.mom__n {
+  font-family: var(--font-mono);
+  font-size: 1.05rem; color: var(--ink);
+  padding-top: .15rem;
+  cursor: pointer;
+}
+.mom__n b {
+  display: block;
+  font-size: .66rem; font-weight: 400; letter-spacing: .08em;
+  color: var(--muted); text-transform: uppercase; margin-top: .25rem;
+}
+.mom__n:hover { background: var(--chartreuse); }
+
+.mom__t {
+  font-size: clamp(1.25rem, 2.9vw, 1.7rem);
+  letter-spacing: -0.025em;
+}
+.mom__body { margin-top: .9rem; max-width: 66ch; }
+.mom__body > p { margin-bottom: .9rem; }
+
+/* sub-encabezado dentro de un momento */
+.sub {
+  font-family: var(--font-mono);
+  font-size: .72rem; font-weight: 400;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink);
+  margin: 1.4rem 0 .2rem;
+  padding-bottom: .35rem;
+  border-bottom: .25pt solid var(--rule-hard);
+}
+.sub span { color: var(--muted); text-transform: none; letter-spacing: 0; }
+.mom__body > .sub:first-child { margin-top: 0; }
+
+/* lista numerada de pasos */
+.steps { list-style: none; margin: .9rem 0 0; padding: 0; counter-reset: paso; }
+.steps li {
+  counter-increment: paso;
+  position: relative;
+  padding: .55rem 0 .55rem 2.3rem;
+  border-bottom: .25pt solid var(--rule);
+}
+.steps li::before {
+  content: counter(paso, decimal-leading-zero);
+  position: absolute; left: 0; top: .62rem;
+  font-family: var(--font-mono); font-size: .68rem; color: var(--muted);
+}
+
+/* rutas paralelas */
+.ruta {
+  border-left: 3px solid var(--rule-hard);
+  padding: .1rem 0 .1rem 1rem;
+  margin: 1rem 0;
+}
+.ruta--a { border-left-color: var(--chartreuse); }
+.ruta__tag {
+  font-family: var(--font-mono);
+  font-size: .66rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted);
+}
+.ruta__t { font-size: 1rem; margin-top: .15rem; margin-bottom: .35rem; }
+
+/* notas y preguntas al grupo */
+.nota {
+  font-size: .95rem; color: var(--muted);
+  border-top: .25pt solid var(--rule);
+  padding-top: .7rem; margin-top: 1rem;
+}
+.pregunta {
+  font-weight: 700; color: var(--ink);
+  font-size: clamp(1.05rem, 2.3vw, 1.35rem);
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  border-left: 4px solid var(--chartreuse);
+  padding-left: 1rem;
+  margin: 1.1rem 0;
+  max-width: 40ch;
+}
+
+/* código */
+code {
+  font-family: var(--font-mono);
+  font-size: .86em;
+  background: rgba(17,17,16,.06);
+  padding: .1em .32em;
+}
+pre.code {
+  font-family: var(--font-mono);
+  font-size: .8rem; line-height: 1.6;
+  background: #fff;
+  border: .25pt solid var(--rule-hard);
+  padding: 1rem 1.1rem;
+  margin-top: 1.1rem;
+  overflow-x: auto;
+}
+pre.code code { background: none; padding: 0; font-size: 1em; }
+
+/* tabla de problemas frecuentes */
+.tabla { width: 100%; border-collapse: collapse; font-size: .97rem; }
+.tabla th {
+  font-family: var(--font-mono);
+  font-size: .66rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); text-align: left; font-weight: 400;
+  padding: 0 1rem .6rem 0;
+  border-bottom: .25pt solid var(--ink);
+}
+.tabla td {
+  vertical-align: top;
+  padding: .8rem 1rem .8rem 0;
+  border-bottom: .25pt solid var(--rule);
+}
+.tabla td:first-child { color: var(--ink); font-weight: 500; width: 34%; }
+@media (max-width: 560px) {
+  .tabla, .tabla tbody, .tabla tr, .tabla td { display: block; width: auto; }
+  .tabla thead { display: none; }
+  .tabla tr { border-bottom: .25pt solid var(--rule-hard); padding-block: .6rem; }
+  .tabla td { border: 0; padding: .15rem 0; }
+  .tabla td:first-child { width: auto; }
+}
+
+/* el momento en modo presentación */
+.deck__t { font-size: clamp(1.6rem, 4.4vw, 3rem); letter-spacing: -0.03em; }
+.deck__min {
+  font-family: var(--font-mono);
+  font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); display: block; margin-top: .5rem;
+}
+.deck__cuerpo { margin-top: clamp(1rem, 3vh, 1.8rem); max-width: 74ch; }
+.deck__cuerpo .steps li { font-size: clamp(.95rem, 1.7vw, 1.1rem); }
+.deck__cuerpo .ans__v, .deck__cuerpo p { font-size: clamp(.95rem, 1.7vw, 1.1rem); }

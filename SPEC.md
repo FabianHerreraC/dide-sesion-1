@@ -1,7 +1,16 @@
-# Spec — sitio de la Sesión 1
+# Spec — sitio de las sesiones DiDE
 
-«Escribir el sistema antes de construirlo». Formación práctica en cognición
-aumentada para la DiDE.
+Formación práctica en cognición aumentada para la DiDE. Una página por sesión,
+mismo sistema visual y mismo par de modos:
+
+- **Sesión 1 — «Escribir el sistema antes de construirlo»** → `index.html` + `app.js`
+- **Sesión 2 — «Del archivo a producción»** → `sesion-2.html` + `sesion-2.js`
+- El modo presentación es compartido: `deck.js`.
+
+El spec de abajo es el de la Sesión 1, escrito antes de construirla; la Sesión 2
+hereda su arquitectura y su sistema visual, y cambia solo el contenido (un
+taller de dos horas con dos rutas paralelas y una tabla de problemas
+frecuentes).
 
 ## 1. ¿Qué es, en una frase?
 Una página de una sola vista que presenta el guion completo de la Sesión 1, los
@@ -52,7 +61,8 @@ cualquier slide donde el «se dice» no alcance a leerse o recordarse en el tiem
 asignado.
 
 ## 8. ¿Qué arquitectura técnica requiere?
-- **Front end:** `index.html` + `styles.css` + `app.js`. Todo el contenido vive
+- **Front end:** `index.html`, `sesion-2.html`, `styles.css`, `deck.js` y el
+  script de cada sesión. Todo el contenido vive
   en `SLIDES`, `EJEMPLO` y `TAREA` dentro de `app.js`: una sola fuente para
   los dos modos. Los pasos del bloque 2 llevan `q` (la pregunta) e `items` (las
   auxiliares); de ahí salen a la vez el desplegable y el slide. Navegación por slide con flechas, `espacio`, `Inicio`/`Fin`, `N`
@@ -62,7 +72,12 @@ asignado.
 - **Producción:** hosting estático tipo GitHub Pages, sin mantenimiento continuo.
 
 ## Editar el contenido
-Todo el guion está en `app.js`. Cada slide es un objeto con `n`, `block`,
+El guion de la Sesión 1 está en `app.js`; el de la Sesión 2, en `sesion-2.js`
+(arreglo `MOMENTOS`: cada momento lleva `parte`, `titulo`, `mins` y su `html`, y
+de ahí salen a la vez la tarjeta del modo consulta y el slide). El modo
+presentación de ambas es `montarDeck()` en `deck.js`.
+
+En la Sesión 1: Cada slide es un objeto con `n`, `block`,
 `label` y, o bien `seen` (lo que se ve) + `said` (el «es decir» del bloque 1), o
 bien `q` + `items` para los ocho pasos. El bloque 2 no muestra «es decir»:
 su razón de ser aparece dentro del desplegable. Cambiar ahí actualiza los dos

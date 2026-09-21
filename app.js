@@ -246,79 +246,21 @@ document.getElementById('ejemplo').innerHTML = `
      línea de código. Esto fue lo único que recibió el agente que lo construyó.</p>
   <div class="ejemplo">${EJEMPLO.map(ejemploCard).join('')}</div>`;
 
-/* ── modo presentación ──────────────────────────────────────────────── */
+/* ── modo presentación (deck compartido, ver deck.js) ───────────────── */
 
-const deck = document.getElementById('deck');
-const deckStage = document.getElementById('deck-stage');
-const deckLabel = document.getElementById('deck-label');
-const deckCount = document.getElementById('deck-count');
-const deckProg = document.getElementById('deck-prog');
-let idx = 0;
-
-function render() {
-  const s = SLIDES[idx];
-  deckStage.innerHTML = `
-    <div class="deck__seen">${s.seen}</div>` +
-    (s.block === 1 && s.said
-      ? `<div class="deck__said"><span class="line">Es decir</span><p>${s.said}</p></div>`
-      : '');
-  deckLabel.innerHTML = `Bloque ${s.block} — ${s.block === 1 ? 'Presentación' : 'Spec en vivo'} · <b>${s.label}</b>`;
-  deckCount.innerHTML = `<b>${String(s.n).padStart(2, '0')}</b> / ${SLIDES.length}`;
-  deckProg.style.width = ((idx + 1) / SLIDES.length * 100) + '%';
-  deckStage.scrollTop = 0;
-}
-
-function go(d) {
-  idx = Math.min(SLIDES.length - 1, Math.max(0, idx + d));
-  render();
-}
-
-function openDeck(n) {
-  idx = typeof n === 'number' ? n : idx;
-  deck.hidden = false;
-  document.body.classList.add('is-presenting');
-  render();
-  deck.focus();
-  if (document.documentElement.requestFullscreen) {
-    document.documentElement.requestFullscreen().catch(() => {});
-  }
-}
-
-function closeDeck() {
-  deck.hidden = true;
-  document.body.classList.remove('is-presenting');
-  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
-  document.getElementById('slide-' + SLIDES[idx].n)
-    ?.scrollIntoView({ block: 'center' });
-}
-
-document.getElementById('btn-present').addEventListener('click', () => openDeck(0));
-document.getElementById('deck-prev').addEventListener('click', () => go(-1));
-document.getElementById('deck-next').addEventListener('click', () => go(1));
-document.getElementById('deck-close').addEventListener('click', closeDeck);
-document.getElementById('deck-notes').addEventListener('click', () => {
-  deck.classList.toggle('is-clean');
+const DECK = montarDeck({
+  slides: SLIDES,
+  etiqueta: s => `Bloque ${s.block} — ${s.block === 1 ? 'Presentación' : 'Spec en vivo'} · <b>${s.label}</b>`,
+  nota: s => (s.block === 1 && s.said)
+    ? `<div class="deck__said"><span class="line">Es decir</span><p>${s.said}</p></div>`
+    : '',
+  ancla: s => 'slide-' + s.n
 });
 
-document.addEventListener('keydown', (e) => {
-  if (deck.hidden) {
-    if (e.key === 'p' || e.key === 'P') { e.preventDefault(); openDeck(0); }
-    return;
-  }
-  switch (e.key) {
-    case 'ArrowRight': case 'PageDown': case ' ': e.preventDefault(); go(1); break;
-    case 'ArrowLeft': case 'PageUp': e.preventDefault(); go(-1); break;
-    case 'Home': idx = 0; render(); break;
-    case 'End': idx = SLIDES.length - 1; render(); break;
-    case 'Escape': closeDeck(); break;
-    case 'n': case 'N': deck.classList.toggle('is-clean'); break;
-  }
-});
-
-/* ── entrar a la presentación desde un slide concreto del modo consulta ── */
+/* ── entrar a la presentación desde una idea del modo consulta ──────── */
 document.addEventListener('click', (e) => {
   const card = e.target.closest('.slide-card');
-  if (!card || !deck.hidden) return;
+  if (!card || DECK.estaAbierto()) return;
   if (!e.target.closest('.slide-card__n')) return;
-  openDeck(SLIDES.findIndex(s => 'slide-' + s.n === card.id));
+  DECK.abrir(SLIDES.findIndex(s => 'slide-' + s.n === card.id));
 });

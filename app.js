@@ -189,7 +189,7 @@ const EJEMPLO = [
 
 function slideCard(s) {
   return `
-  <article class="slide-card" id="slide-${s.n}">
+  <article class="slide-card" id="slide-${s.n}" data-i="${SLIDES.indexOf(s)}">
     <div class="slide-card__n">Idea<b>${String(s.n).padStart(2, '0')}</b></div>
     <div>
       <div class="stage"><span class="line">Se ve</span>${s.seen}</div>
@@ -246,21 +246,13 @@ document.getElementById('ejemplo').innerHTML = `
      línea de código. Esto fue lo único que recibió el agente que lo construyó.</p>
   <div class="ejemplo">${EJEMPLO.map(ejemploCard).join('')}</div>`;
 
-/* ── modo presentación (deck compartido, ver deck.js) ───────────────── */
+/* ── configuración para el deck compartido (ver deck.js y sitio.js) ──── */
 
-const DECK = montarDeck({
+const SESION_1 = {
   slides: SLIDES,
   etiqueta: s => `Bloque ${s.block} — ${s.block === 1 ? 'Presentación' : 'Spec en vivo'} · <b>${s.label}</b>`,
   nota: s => (s.block === 1 && s.said)
     ? `<div class="deck__said"><span class="line">Es decir</span><p>${s.said}</p></div>`
     : '',
   ancla: s => 'slide-' + s.n
-});
-
-/* ── entrar a la presentación desde una idea del modo consulta ──────── */
-document.addEventListener('click', (e) => {
-  const card = e.target.closest('.slide-card');
-  if (!card || DECK.estaAbierto()) return;
-  if (!e.target.closest('.slide-card__n')) return;
-  DECK.abrir(SLIDES.findIndex(s => 'slide-' + s.n === card.id));
-});
+};

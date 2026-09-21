@@ -140,7 +140,7 @@ const PROBLEMAS = [
 
 function momentoCard(m) {
   return `
-  <article class="mom" id="mom-${m.n}">
+  <article class="mom" id="mom-${m.n}" data-i="${MOMENTOS.indexOf(m)}">
     <div class="mom__n">${String(m.n).padStart(2, '0')}<b>${m.mins}</b></div>
     <div>
       <h3 class="mom__t">${m.titulo}</h3>
@@ -161,7 +161,7 @@ document.getElementById('problemas').innerHTML = `
     <tbody>${PROBLEMAS.map(([s, q]) => `<tr><td>${s}</td><td>${q}</td></tr>`).join('')}</tbody>
   </table>`;
 
-/* ── modo presentación ──────────────────────────────────────────────── */
+/* ── configuración para el deck compartido ──────────────────────────── */
 
 const NOMBRE_PARTE = {
   0: 'Antes de empezar',
@@ -169,7 +169,7 @@ const NOMBRE_PARTE = {
   2: 'Parte 2 — Forms y Excel'
 };
 
-const DECK = montarDeck({
+const SESION_2 = {
   slides: MOMENTOS.map(m => ({
     ...m,
     seen: `<h2 class="deck__t">${m.titulo}</h2>
@@ -181,11 +181,4 @@ const DECK = montarDeck({
     : `${NOMBRE_PARTE[m.parte]} · <b>${m.titulo}</b>`,
   nota: () => '',
   ancla: m => 'mom-' + m.n
-});
-
-document.addEventListener('click', (e) => {
-  const card = e.target.closest('.mom');
-  if (!card || DECK.estaAbierto()) return;
-  if (!e.target.closest('.mom__n')) return;
-  DECK.abrir(MOMENTOS.findIndex(m => 'mom-' + m.n === card.id));
-});
+};

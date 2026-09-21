@@ -5,7 +5,9 @@
    sesión y esta lo monta.
    ===================================================================== */
 
-function montarDeck({ slides, etiqueta, nota, ancla }) {
+/* `fuente()` devuelve la configuración de la sesión que está a la vista:
+   { slides, etiqueta, nota, ancla }. Así un solo deck sirve a las dos. */
+function montarDeck(fuente) {
   const deck = document.getElementById('deck');
   const stage = document.getElementById('deck-stage');
   const rotulo = document.getElementById('deck-label');
@@ -14,6 +16,7 @@ function montarDeck({ slides, etiqueta, nota, ancla }) {
   let idx = 0;
 
   function render() {
+    const { slides, etiqueta, nota } = fuente();
     const s = slides[idx];
     const n = nota ? nota(s) : '';
     stage.innerHTML = `<div class="deck__seen">${s.seen}</div>` + n;
@@ -24,6 +27,7 @@ function montarDeck({ slides, etiqueta, nota, ancla }) {
   }
 
   function go(d) {
+    const { slides } = fuente();
     idx = Math.min(slides.length - 1, Math.max(0, idx + d));
     render();
   }
@@ -40,6 +44,7 @@ function montarDeck({ slides, etiqueta, nota, ancla }) {
   }
 
   function cerrar() {
+    const { slides, ancla } = fuente();
     deck.hidden = true;
     document.body.classList.remove('is-presenting');
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
@@ -66,7 +71,7 @@ function montarDeck({ slides, etiqueta, nota, ancla }) {
       case 'ArrowRight': case 'PageDown': case ' ': e.preventDefault(); go(1); break;
       case 'ArrowLeft': case 'PageUp': e.preventDefault(); go(-1); break;
       case 'Home': idx = 0; render(); break;
-      case 'End': idx = slides.length - 1; render(); break;
+      case 'End': idx = fuente().slides.length - 1; render(); break;
       case 'Escape': cerrar(); break;
       case 'n': case 'N': deck.classList.toggle('is-clean'); break;
     }

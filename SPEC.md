@@ -3,9 +3,14 @@
 Formación práctica en cognición aumentada para la DiDE. Una página por sesión,
 mismo sistema visual y mismo par de modos:
 
-- **Sesión 1 — «Escribir el sistema antes de construirlo»** → `index.html` + `app.js`
-- **Sesión 2 — «Del archivo a producción»** → `sesion-2.html` + `sesion-2.js`
-- El modo presentación es compartido: `deck.js`.
+Las dos sesiones viven en `index.html`; el selector de arriba muestra una a la
+vez y el modo presentación siempre arranca en la que se está viendo.
+
+- **Sesión 1 — «Escribir el sistema antes de construirlo»** → `app.js`
+- **Sesión 2 — «Del archivo a producción»** → `sesion-2.js`
+- Modo presentación compartido → `deck.js`; selector y montaje → `sitio.js`
+- `sesion-2.html` quedó como redirección a `index.html#sesion-2`, para que el
+  enlace que ya se repartió siga funcionando.
 
 El spec de abajo es el de la Sesión 1, escrito antes de construirla; la Sesión 2
 hereda su arquitectura y su sistema visual, y cambia solo el contenido (un
@@ -61,8 +66,8 @@ cualquier slide donde el «se dice» no alcance a leerse o recordarse en el tiem
 asignado.
 
 ## 8. ¿Qué arquitectura técnica requiere?
-- **Front end:** `index.html`, `sesion-2.html`, `styles.css`, `deck.js` y el
-  script de cada sesión. Todo el contenido vive
+- **Front end:** `index.html`, `styles.css`, `deck.js`, `sitio.js` y el script
+  de cada sesión. Todo el contenido vive
   en `SLIDES`, `EJEMPLO` y `TAREA` dentro de `app.js`: una sola fuente para
   los dos modos. Los pasos del bloque 2 llevan `q` (la pregunta) e `items` (las
   auxiliares); de ahí salen a la vez el desplegable y el slide. Navegación por slide con flechas, `espacio`, `Inicio`/`Fin`, `N`

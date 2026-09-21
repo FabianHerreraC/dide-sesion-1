@@ -624,3 +624,17 @@ pre.code code { background: none; padding: 0; font-size: 1em; }
 .deck__cuerpo { margin-top: clamp(1rem, 3vh, 1.8rem); max-width: 74ch; }
 .deck__cuerpo .steps li { font-size: clamp(.95rem, 1.7vw, 1.1rem); }
 .deck__cuerpo .ans__v, .deck__cuerpo p { font-size: clamp(.95rem, 1.7vw, 1.1rem); }
+
+/* =====================================================================
+   FORMULARIO EMBEBIDO — el resultado del taller, funcionando
+   ===================================================================== */
+.embed {
+  margin-top: 1.2rem;
+  border: .25pt solid var(--rule-hard);
+  background: #fff;
+  padding: .5rem;
+  overflow: hidden;
+}
+.embed iframe { display: block; width: 100%; border: 0; }
+@media (max-width: 560px) { .embed iframe { height: 520px; } }
+.deck__cuerpo .embed iframe { height: min(480px, 46vh); }

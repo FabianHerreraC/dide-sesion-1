@@ -125,7 +125,16 @@ const MOMENTOS = [
   { n: 11, parte: 2, titulo: 'Cierre', mins: '5 min',
     html: `
       <p class="pregunta">El sitio es público y el Excel es privado: el código se muestra y los datos se resguardan.</p>
-      <p>En la Sesión 3 cambiamos el formulario prestado por uno propio, diseñado en la página y conectado a una automatización.</p>` }
+      <p>En la Sesión 3 cambiamos el formulario prestado por uno propio, diseñado en la página y conectado a una automatización.</p>` },
+  { n: 12, parte: 3, titulo: 'Así se ve ya hecho', mins: '',
+    html: `
+      <p>Este es el resultado del taller, funcionando en esta misma página: un
+         formulario de Microsoft Forms embebido, que escribe cada respuesta en
+         un Excel de OneDrive. Lo que van a construir se ve así.</p>
+      <div class="embed">
+        <iframe width="640px" height="480px" src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=UMLAdHccXUCbHprB9Qir4zjqhc7agYBPmfZi1e4GjDtUQjFDMjNINlkyU1hYNFVZTlU0TVNHUTdIMy4u&embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen title="Formulario de ejemplo"> </iframe>
+      </div>
+      <p class="nota">Es un formulario real: lo que se escriba aquí llega al Excel del ejemplo.</p>` }
 ];
 
 const PROBLEMAS = [
@@ -155,6 +164,8 @@ document.getElementById('parte-1').innerHTML =
   MOMENTOS.filter(m => m.parte === 1).map(momentoCard).join('');
 document.getElementById('parte-2').innerHTML =
   MOMENTOS.filter(m => m.parte === 2).map(momentoCard).join('');
+document.getElementById('demo').innerHTML =
+  MOMENTOS.filter(m => m.parte === 3).map(momentoCard).join('');
 document.getElementById('problemas').innerHTML = `
   <table class="tabla">
     <thead><tr><th>Síntoma</th><th>Qué hacer</th></tr></thead>
@@ -166,7 +177,8 @@ document.getElementById('problemas').innerHTML = `
 const NOMBRE_PARTE = {
   0: 'Antes de empezar',
   1: 'Parte 1 — Publicar el sitio',
-  2: 'Parte 2 — Forms y Excel'
+  2: 'Parte 2 — Forms y Excel',
+  3: 'El resultado'
 };
 
 const SESION_2 = {
@@ -176,7 +188,7 @@ const SESION_2 = {
            ${m.mins ? `<span class="deck__min">${m.mins}</span>` : ''}
            <div class="deck__cuerpo">${m.html}</div>`
   })),
-  etiqueta: m => m.parte === 0
+  etiqueta: m => (m.parte === 0 || m.parte === 3)
     ? `<b>${m.titulo}</b>`
     : `${NOMBRE_PARTE[m.parte]} · <b>${m.titulo}</b>`,
   nota: () => '',

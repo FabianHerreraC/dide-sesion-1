@@ -21,26 +21,6 @@ const VOCABULARIO = [
   ['GitHub Pages', 'El servicio que convierte el repositorio en un sitio web público.']
 ];
 
-/* ── helpers de composición ─────────────────────────────────────────── */
-
-function pasosOrdenados(items) {
-  return '<ol class="steps">' + items.map(t => `<li>${t}</li>`).join('') + '</ol>';
-}
-
-function filas(rows) {
-  return '<div class="ans">' + rows.map(([k, v]) => `
-    <div class="ans__row"><span class="ans__k">${k}</span><span class="ans__v">${v}</span></div>`).join('') + '</div>';
-}
-
-function ruta(letra, titulo, cuerpo) {
-  return `
-  <div class="ruta ruta--${letra.toLowerCase()}">
-    <span class="ruta__tag">Ruta ${letra}</span>
-    <h4 class="ruta__t">${titulo}</h4>
-    ${cuerpo}
-  </div>`;
-}
-
 /* ── los momentos del taller ────────────────────────────────────────── */
 
 const MOMENTOS = [
@@ -145,52 +125,16 @@ const PROBLEMAS = [
   ['El formulario pide iniciar sesión', 'Cambiar en Forms la opción de quién puede responder.']
 ];
 
-/* ── modo consulta ──────────────────────────────────────────────────── */
+/* ── montaje: secciones del modo consulta + configuración del deck ──── */
 
-function momentoCard(m) {
-  return `
-  <article class="mom" id="mom-${m.n}" data-i="${MOMENTOS.indexOf(m)}">
-    <div class="mom__n">${String(m.n).padStart(2, '0')}<b>${m.mins}</b></div>
-    <div>
-      <h3 class="mom__t">${m.titulo}</h3>
-      <div class="mom__body">${m.html}</div>
-    </div>
-  </article>`;
-}
+document.getElementById('problemas-2').innerHTML = tablaProblemas(PROBLEMAS);
 
-document.getElementById('antes').innerHTML =
-  MOMENTOS.filter(m => m.parte === 0).map(momentoCard).join('');
-document.getElementById('parte-1').innerHTML =
-  MOMENTOS.filter(m => m.parte === 1).map(momentoCard).join('');
-document.getElementById('parte-2').innerHTML =
-  MOMENTOS.filter(m => m.parte === 2).map(momentoCard).join('');
-document.getElementById('demo').innerHTML =
-  MOMENTOS.filter(m => m.parte === 3).map(momentoCard).join('');
-document.getElementById('problemas').innerHTML = `
-  <table class="tabla">
-    <thead><tr><th>Síntoma</th><th>Qué hacer</th></tr></thead>
-    <tbody>${PROBLEMAS.map(([s, q]) => `<tr><td>${s}</td><td>${q}</td></tr>`).join('')}</tbody>
-  </table>`;
-
-/* ── configuración para el deck compartido ──────────────────────────── */
-
-const NOMBRE_PARTE = {
-  0: 'Antes de empezar',
-  1: 'Parte 1 — Publicar el sitio',
-  2: 'Parte 2 — Forms y Excel',
-  3: 'El resultado'
-};
-
-const SESION_2 = {
-  slides: MOMENTOS.map(m => ({
-    ...m,
-    seen: `<h2 class="deck__t">${m.titulo}</h2>
-           ${m.mins ? `<span class="deck__min">${m.mins}</span>` : ''}
-           <div class="deck__cuerpo">${m.html}</div>`
-  })),
-  etiqueta: m => (m.parte === 0 || m.parte === 3)
-    ? `<b>${m.titulo}</b>`
-    : `${NOMBRE_PARTE[m.parte]} · <b>${m.titulo}</b>`,
-  nota: () => '',
-  ancla: m => 'mom-' + m.n
-};
+const SESION_2 = montarTaller({
+  momentos: MOMENTOS,
+  prefijo: '2-',
+  secciones: { 0: 'antes', 1: 'parte-1', 2: 'parte-2', 3: 'demo' },
+  partes: {
+    1: 'Parte 1 — Publicar el sitio',
+    2: 'Parte 2 — Forms y Excel'
+  }
+});

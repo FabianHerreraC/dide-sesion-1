@@ -6,10 +6,18 @@
 
 const SESIONES = {
   's1': { config: SESION_1, hash: '' },
-  's2': { config: SESION_2, hash: '#sesion-2' }
+  's2': { config: SESION_2, hash: '#sesion-2' },
+  's3': { config: SESION_3, hash: '#sesion-3' },
+  's4': { config: SESION_4, hash: '#sesion-4' }
 };
 
-let actual = location.hash === '#sesion-2' ? 's2' : 's1';
+/* el hash manda: #sesion-3 abre la Sesión 3 directamente */
+function desdeHash() {
+  const id = Object.keys(SESIONES).find(k => SESIONES[k].hash === location.hash);
+  return id || 's1';
+}
+
+let actual = desdeHash();
 
 function mostrar(id, { scroll = true } = {}) {
   if (!SESIONES[id]) return;
@@ -35,7 +43,7 @@ document.querySelectorAll('.tab').forEach(tab => {
 });
 
 window.addEventListener('hashchange', () => {
-  mostrar(location.hash === '#sesion-2' ? 's2' : 's1');
+  mostrar(desdeHash());
 });
 
 /* al abrir la página (o un enlace directo a la Sesión 2) se empieza arriba */

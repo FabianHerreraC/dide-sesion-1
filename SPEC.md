@@ -8,6 +8,9 @@ vez y el modo presentación siempre arranca en la que se está viendo.
 
 - **Sesión 1 — «Escribir el sistema antes de construirlo»** → `app.js`
 - **Sesión 2 — «Del archivo a producción»** → `sesion-2.js`
+- **Sesión 3 — «El loop»** → `sesion-3.js`
+- **Sesión 4 — «La agencia»** → `sesion-4.js`
+- Piezas de composición compartidas → `comun.js`
 - Modo presentación compartido → `deck.js`; selector y montaje → `sitio.js`
 - `sesion-2.html` quedó como redirección a `index.html#sesion-2`, para que el
   enlace que ya se repartió siga funcionando.
@@ -77,10 +80,12 @@ asignado.
 - **Producción:** hosting estático tipo GitHub Pages, sin mantenimiento continuo.
 
 ## Editar el contenido
-El guion de la Sesión 1 está en `app.js`; el de la Sesión 2, en `sesion-2.js`
-(arreglo `MOMENTOS`: cada momento lleva `parte`, `titulo`, `mins` y su `html`, y
-de ahí salen a la vez la tarjeta del modo consulta y el slide). El modo
-presentación de ambas es `montarDeck()` en `deck.js`.
+El guion de la Sesión 1 está en `app.js`. Las sesiones de taller (2, 3 y 4)
+usan todas la misma forma: un arreglo `MOMENTOS` donde cada momento lleva
+`parte`, `titulo`, `mins` y su `html`, y una llamada a `montarTaller()` que
+reparte esos momentos por sección y devuelve la configuración del deck. De ese
+único dato salen a la vez la tarjeta del modo consulta y el slide. Los
+diagramas son SVG escritos a mano en el archivo de su sesión.
 
 En la Sesión 1: Cada slide es un objeto con `n`, `block`,
 `label` y, o bien `seen` (lo que se ve) + `said` (el «es decir» del bloque 1), o

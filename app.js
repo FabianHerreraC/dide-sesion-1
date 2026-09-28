@@ -20,12 +20,6 @@ const VENN = `
   <line x1="160" y1="30" x2="160" y2="46" stroke="#111110" stroke-width="0.5"/>
 </svg>`;
 
-function aux(items) {
-  return '<ul class="aux">' + items
-    .map((t, i) => `<li data-i="${String(i + 1).padStart(2, '0')}">${t}</li>`)
-    .join('') + '</ul>';
-}
-
 const TAREA = 'Vamos a hacer una web que le cuente a los miembros de la comunidad UEB de qué se trata tu cargo, las funciones que cumples, quién eres tú profesionalmente y todo lo valioso que aportas a la universidad.';
 
 const SLIDES = [

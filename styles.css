@@ -695,3 +695,13 @@ pre.code code { background: none; padding: 0; font-size: 1em; }
   .tab { padding: .5rem .7rem; }
   .modebar__nav { gap: .3rem; }
 }
+
+/* rótulos secundarios dentro de un diagrama */
+.diagrama .rot .sub { fill: var(--muted); font-size: 9.5px; }
+.diagrama .micro text {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: .06em; fill: var(--muted);
+}
+
+/* con cinco sesiones, el rótulo del modo actual estorba antes */
+@media (max-width: 960px) { .modebar__now { display: none; } }

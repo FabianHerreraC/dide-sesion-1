@@ -8,7 +8,8 @@ const SESIONES = {
   's1': { config: SESION_1, hash: '' },
   's2': { config: SESION_2, hash: '#sesion-2' },
   's3': { config: SESION_3, hash: '#sesion-3' },
-  's4': { config: SESION_4, hash: '#sesion-4' }
+  's4': { config: SESION_4, hash: '#sesion-4' },
+  's5': { config: SESION_5, hash: '#sesion-5' }
 };
 
 /* el hash manda: #sesion-3 abre la Sesión 3 directamente */

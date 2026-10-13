@@ -10,6 +10,7 @@ vez y el modo presentación siempre arranca en la que se está viendo.
 - **Sesión 2 — «Del archivo a producción»** → `sesion-2.js`
 - **Sesión 3 — «El loop»** → `sesion-3.js`
 - **Sesión 4 — «La agencia»** → `sesion-4.js`
+- **Sesión 5 — «El sistema completo»** → `sesion-5.js`
 - Piezas de composición compartidas → `comun.js`
 - Modo presentación compartido → `deck.js`; selector y montaje → `sitio.js`
 - `sesion-2.html` quedó como redirección a `index.html#sesion-2`, para que el

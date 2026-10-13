@@ -66,7 +66,7 @@ const MOMENTOS = [
 
   { n: 5, parte: 1, titulo: 'Cierre de la primera hora', mins: '10 min',
     html: `
-      <p>Abrir el sitio publicado y presionar <b>Ctrl + U</b> (o clic derecho → <em>Ver código fuente</em>). Todo lo que escribieron está a la vista de cualquier visitante.</p>
+      <p>Abrir el sitio publicado y mirar su código fuente, con clic derecho → <em>Ver código fuente</em>. Todo lo que escribieron está a la vista de cualquier visitante.</p>
       <p class="pregunta">Si la página va a recoger datos de personas, ¿dónde deberían guardarse?</p>` },
 
   { n: 6, parte: 2, titulo: 'Crear el formulario conectado a Excel', mins: '15 min',

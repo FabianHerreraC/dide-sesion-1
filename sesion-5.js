@@ -51,7 +51,7 @@ const DIAGRAMA_CAPAS = `
 </svg>`;
 
 const CAPAS = [
-  ['Frontend', 'Lo que el visitante ve y toca: la página, el formulario, los botones. Es todo lo que hicimos en la Sesión 2, y se puede leer entero con <b>Ctrl + U</b>: nada de lo que vive ahí es secreto.'],
+  ['Frontend', 'Lo que el visitante ve y toca: la página, el formulario, los botones. Es todo lo que hicimos en la Sesión 2, y cualquier visitante puede leerlo entero desde su navegador: nada de lo que vive ahí es secreto.'],
   ['Backend', 'Las reglas que nadie ve: qué se acepta, qué se calcula, qué se responde. Fue el flujo de n8n de la Sesión 3, y es el único lugar donde pueden vivir una clave o una decisión de permisos.'],
   ['Base de datos', 'Lo que queda escrito cuando se apaga el computador. Era el Excel de OneDrive; en esta sesión es una tabla de verdad, con sus columnas y sus tipos.']
 ];
@@ -88,7 +88,7 @@ const MOMENTOS_5 = [
     html: `
       ${DIAGRAMA_CAPAS}
       ${filas(CAPAS)}
-      <p class="pregunta">Si el frontend se lee entero con Ctrl + U, ¿qué cosas no pueden vivir nunca ahí?</p>` },
+      <p class="pregunta">Si cualquiera puede leer el frontend entero, ¿qué cosas no pueden vivir nunca ahí?</p>` },
 
   { n: 2, parte: 1, titulo: 'Qué es una llamada de API', mins: '10 min',
     html: `

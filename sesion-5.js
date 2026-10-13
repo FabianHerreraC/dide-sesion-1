@@ -50,6 +50,52 @@ const DIAGRAMA_CAPAS = `
   <text class="pie" x="320" y="192" text-anchor="middle">cada flecha es una llamada de API: una pregunta y su respuesta</text>
 </svg>`;
 
+const DIAGRAMA_FLUJO = `
+<svg class="diagrama" viewBox="0 0 640 185" role="img"
+     aria-label="Un dato entra: alguien escribe «faltan salones» un 13 de octubre. Pasa por tres estaciones: se valida, se guarda y se procesa. Y sale convertido en lo que la página muestra: 23 personas pidieron salones. Es el mismo dato en tres estados.">
+  <defs>
+    <marker id="ptd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#111110"/>
+    </marker>
+  </defs>
+
+  <text class="via" x="6" y="22">01 / entra</text>
+  <text class="via" x="634" y="22" text-anchor="end">02 / sale</text>
+
+  <rect class="dato" x="6"   y="32" width="144" height="68"/>
+  <rect class="dato" x="508" y="32" width="126" height="68"/>
+  <g class="cajas">
+    <rect x="178" y="46" width="90" height="40"/>
+    <rect x="290" y="46" width="90" height="40"/>
+    <rect x="402" y="46" width="90" height="40"/>
+  </g>
+
+  <g class="rot">
+    <text x="78"  y="62">«faltan salones»</text>
+    <text x="78"  y="80" class="enDato">13 oct · 9:40</text>
+    <text x="223" y="71">valida</text>
+    <text x="335" y="71">guarda</text>
+    <text x="447" y="71">procesa</text>
+    <text x="571" y="62">23 personas</text>
+    <text x="571" y="80" class="enDato">pidieron salones</text>
+  </g>
+
+  <g class="flechas">
+    <line x1="152" y1="66" x2="174" y2="66" marker-end="url(#ptd)"/>
+    <line x1="270" y1="66" x2="286" y2="66" marker-end="url(#ptd)"/>
+    <line x1="382" y1="66" x2="398" y2="66" marker-end="url(#ptd)"/>
+    <line x1="494" y1="66" x2="504" y2="66" marker-end="url(#ptd)"/>
+  </g>
+
+  <g class="micro">
+    <text x="223" y="104" text-anchor="middle">¿está completo?</text>
+    <text x="335" y="104" text-anchor="middle">queda la fila</text>
+    <text x="447" y="104" text-anchor="middle">cuenta y resume</text>
+  </g>
+
+  <text class="pie" x="320" y="140" text-anchor="middle">el mismo dato en tres estados: lo que alguien dijo, lo que queda escrito, lo que otros ven</text>
+</svg>`;
+
 const CAPAS = [
   ['Frontend', 'Lo que el visitante ve y toca: la página, el formulario, los botones. Es todo lo que hicimos en la Sesión 2, y cualquier visitante puede leerlo entero desde su navegador: nada de lo que vive ahí es secreto.'],
   ['Backend', 'Las reglas que nadie ve: qué se acepta, qué se calcula, qué se responde. Fue el flujo de n8n de la Sesión 3, y es el único lugar donde pueden vivir una clave o una decisión de permisos.'],
@@ -143,6 +189,7 @@ const MOMENTOS_5 = [
 
   { n: 3, parte: 1, titulo: 'El flujo: lo que entra y lo que sale', mins: '10 min',
     html: `
+      ${DIAGRAMA_FLUJO}
       ${pasosOrdenados([
         '<b>Entra.</b> Alguien escribe algo en el formulario y lo envía.',
         '<b>Se valida.</b> El backend revisa que esté completo y que sea plausible antes de aceptarlo. Lo que no se valida, se cree.',

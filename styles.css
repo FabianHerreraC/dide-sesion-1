@@ -777,3 +777,7 @@ pre.code code { background: none; padding: 0; font-size: 1em; }
   border: .25pt solid var(--ink); padding: .4rem .7rem;
 }
 .demo__body .nota { margin-top: 1.2rem; }
+
+/* el dato mismo, resaltado dentro de un diagrama */
+.diagrama .dato { fill: var(--chartreuse); stroke: var(--ink); stroke-width: .5; }
+.diagrama .rot .enDato { fill: var(--ink); opacity: .65; font-size: 9.5px; }

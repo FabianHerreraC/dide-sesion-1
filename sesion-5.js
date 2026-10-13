@@ -92,7 +92,7 @@ const MOMENTOS_5 = [
 
   { n: 2, parte: 1, titulo: 'Qué es una llamada de API', mins: '10 min',
     html: `
-      <p>Una <b>llamada de API</b> es una conversación corta entre dos programas: uno pregunta o entrega algo, el otro responde. Nada más. Ya hicimos varias sin llamarlas así: el formulario de la Sesión 4 enviando al webhook era una, y la página leyendo el JSON de vuelta era otra.</p>
+      <p>Una <b>llamada de API</b> es una conversación corta entre dos programas: uno pregunta o entrega algo, el otro responde. Nada más. Ya hicimos una sin llamarla así: la llamada a <b>Anthropic</b> para alcanzar el modelo que movía el bot. La clave de la credencial abría la puerta, la pregunta salía en el cuerpo y el texto del modelo volvía en la respuesta. El motor del bot nunca estuvo en nuestro computador: estaba del otro lado de esa llamada.</p>
       ${filas(LLAMADA)}
       <p class="nota">Cuando un sistema «se integra» con otro, casi siempre quiere decir esto: que uno sabe a qué dirección llamar y qué esperar de vuelta.</p>` },
 

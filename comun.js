@@ -93,3 +93,13 @@ function montarTaller({ momentos, secciones, partes, prefijo }) {
     ancla: m => 'mom-' + (prefijo || '') + m.n
   };
 }
+
+/* un botón que despliega un ejemplo: cerrado por defecto, para no
+   interrumpir la lectura de quien no lo necesita */
+function desplegable(titulo, cuerpo) {
+  return `
+  <details class="demo">
+    <summary><span class="demo__tag">${titulo}</span><span class="demo__mark" aria-hidden="true"></span></summary>
+    <div class="demo__body">${cuerpo}</div>
+  </details>`;
+}

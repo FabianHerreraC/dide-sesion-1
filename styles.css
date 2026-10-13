@@ -154,7 +154,7 @@ a { color: var(--ink); }
   gap: clamp(1.5rem, 4vw, 3.5rem);
   align-items: start;
 }
-@media (max-width: 800px) { .cols { grid-template-columns: 1fr; gap: 1.5rem; } }
+@media (max-width: 800px) { .cols { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; } }
 
 .rail { position: sticky; top: 4.5rem; }
 @media (max-width: 800px) { .rail { position: static; } }
@@ -179,7 +179,7 @@ a { color: var(--ink); }
   gap: 1.5rem;
 }
 .slide-card:first-child { border-top: 0; padding-top: 0; }
-@media (max-width: 560px) { .slide-card { grid-template-columns: 1fr; gap: .9rem; } }
+@media (max-width: 560px) { .slide-card { grid-template-columns: minmax(0, 1fr); gap: .9rem; } }
 
 .slide-card__n {
   font-family: var(--font-mono);
@@ -455,7 +455,7 @@ body.is-presenting { overflow: hidden; }
 }
 .ans__v { color: var(--ink-2); }
 @media (max-width: 620px) {
-  .ans__row { grid-template-columns: 1fr; gap: .2rem; }
+  .ans__row { grid-template-columns: minmax(0, 1fr); gap: .2rem; }
 }
 
 /* =====================================================================
@@ -493,7 +493,7 @@ body.is-presenting { overflow: hidden; }
   gap: 1.5rem;
 }
 .mom:first-child { border-top: 0; padding-top: 0; }
-@media (max-width: 560px) { .mom { grid-template-columns: 1fr; gap: .7rem; } }
+@media (max-width: 560px) { .mom { grid-template-columns: minmax(0, 1fr); gap: .7rem; } }
 
 .mom__n {
   font-family: var(--font-mono);
@@ -705,3 +705,75 @@ pre.code code { background: none; padding: 0; font-size: 1em; }
 
 /* con cinco sesiones, el rótulo del modo actual estorba antes */
 @media (max-width: 960px) { .modebar__now { display: none; } }
+
+/* =====================================================================
+   DESPLEGABLE DE EJEMPLO — un botón que abre una muestra
+   ===================================================================== */
+.demo { margin-top: 1.3rem; }
+.demo > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  font-family: var(--font-mono);
+  font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink);
+  border: .25pt solid var(--rule-hard);
+  padding: .55rem .9rem;
+  transition: background .15s ease, border-color .15s ease;
+}
+.demo > summary::-webkit-details-marker { display: none; }
+.demo > summary:hover { background: var(--chartreuse); border-color: var(--ink); }
+.demo > summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.demo[open] > summary { background: var(--chartreuse); border-color: var(--ink); }
+
+.demo__mark { width: 11px; height: 11px; position: relative; }
+.demo__mark::before { content: ''; position: absolute; inset: 5px 0 auto 0; border-top: 1px solid var(--ink); }
+.demo__mark::after  { content: ''; position: absolute; inset: 0 5px 0 auto; border-left: 1px solid var(--ink); }
+.demo[open] .demo__mark::after { opacity: 0; }
+
+.demo__body {
+  margin-top: 1rem;
+  border: .25pt solid var(--rule-hard);
+  border-left: 4px solid var(--chartreuse);
+  background: #fff;
+  padding: clamp(1.1rem, 3vw, 1.8rem);
+  max-width: 62ch;
+}
+.demo__body h5 {
+  font-family: var(--font-mono);
+  font-size: .68rem; font-weight: 400;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted);
+  margin: 1.6rem 0 .6rem;
+}
+.demo__body h5:first-child { margin-top: 0; }
+
+/* la muestra misma: se ve como se vería en un formulario */
+.muestra {
+  border: .25pt solid var(--rule);
+  background: var(--bg);
+  padding: 1rem 1.1rem;
+  font-size: .95rem;
+  line-height: 1.5;
+}
+.muestra p { margin: 0 0 .7rem; }
+.muestra p:last-child { margin-bottom: 0; }
+.muestra .casilla {
+  display: grid;
+  grid-template-columns: 1.1rem minmax(0, 1fr);
+  gap: .6rem;
+  align-items: start;
+}
+.muestra .casilla i {
+  width: 13px; height: 13px; margin-top: .25rem;
+  border: 1px solid var(--ink); display: block;
+}
+.muestra .botones { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .9rem; }
+.muestra .botones span {
+  font-family: var(--font-mono); font-size: .68rem;
+  text-transform: uppercase; letter-spacing: .06em;
+  border: .25pt solid var(--ink); padding: .4rem .7rem;
+}
+.demo__body .nota { margin-top: 1.2rem; }

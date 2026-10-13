@@ -72,9 +72,54 @@ const LEY = [
 
   '<b>El titular manda sobre su dato.</b> Puede conocer, actualizar, rectificar y suprimir lo suyo, pedir prueba de la autorización, y revocarla. Eso exige un canal visible para ejercerlo y plazos: <b>10 días hábiles</b> para responder una consulta y <b>15 días hábiles</b> para un reclamo, cada uno prorrogable una vez. Un formulario sin un correo de contacto para ejercer estos derechos ya está incompleto.',
 
+  '<b>Las cookies también son datos.</b> Una cookie es un archivo diminuto que el sitio deja en el navegador del visitante para reconocerlo de una página a otra: mantener la sesión abierta, recordar el idioma, o seguir su rastro. Las estrictamente necesarias para que el sitio funcione no piden permiso; las de medición, publicidad o perfilamiento sí, porque permiten identificar a una persona y eso ya es tratamiento de datos. En la práctica: casilla sin marcar por defecto, rechazar tan fácil como aceptar, decir quién las pone —propias o de terceros— y cuánto duran. Si la página embebe analítica, un mapa, un video o el formulario de otro servicio, esas cookies de terceros también hay que declararlas.',
+
   '<b>Datos sensibles, menores y dónde viven los datos.</b> Salud, biometría, origen étnico, orientación política o sexual y convicciones son <b>datos sensibles</b>: nadie está obligado a entregarlos y su tratamiento es excepcional; los de niñas, niños y adolescentes, más restringidos todavía. Además hay deberes de seguridad y confidencialidad, política de tratamiento y aviso de privacidad, registro en el <b>RNBD</b> según el tamaño y la naturaleza de la entidad, y reglas para la <b>transferencia internacional</b>: al publicar en una herramienta como ChatGPT Sites, los datos quedan en servidores fuera del país, y eso hay que advertirlo y poder sustentarlo.'
 ];
 
+const EJEMPLO_CONSENTIMIENTO = `
+  <h5>En el formulario, antes del botón de enviar</h5>
+  <div class="muestra">
+    <p>Pedimos tu nombre y tu correo para responder tu solicitud. No los usamos
+       para nada más y los conservamos mientras dure el trámite.</p>
+    <div class="casilla">
+      <i aria-hidden="true"></i>
+      <span>Autorizo a <b>[Dependencia · Universidad El Bosque]</b> a tratar mis
+        datos personales con la finalidad de <b>[responder mi solicitud]</b>.
+        Sé que puedo conocer, actualizar, rectificar o suprimir mis datos y
+        revocar esta autorización escribiendo a <b>[correo de contacto]</b>, y
+        que puedo consultar la <b>[Política de Tratamiento de Datos
+        Personales]</b>.</span>
+    </div>
+  </div>
+
+  <h5>El mismo texto, en código</h5>
+  <pre class="code"><code>&lt;label class="consentimiento"&gt;
+  &lt;input type="checkbox" name="autorizacion" required&gt;
+  Autorizo a [Dependencia] a tratar mis datos personales con la
+  finalidad de [finalidad]. Puedo conocer, actualizar, rectificar o
+  suprimir mis datos y revocar esta autorización escribiendo a
+  [correo]. &lt;a href="[enlace]"&gt;Política de tratamiento&lt;/a&gt;.
+&lt;/label&gt;</code></pre>
+
+  <h5>Si el sitio usa cookies que no son necesarias</h5>
+  <div class="muestra">
+    <p>Este sitio usa cookies propias para que funcione lo básico. Si lo
+       autorizas, también usaremos cookies de medición para saber qué
+       secciones se visitan. Puedes rechazarlas sin perder acceso al
+       contenido.</p>
+    <div class="botones">
+      <span>Aceptar todas</span>
+      <span>Solo las necesarias</span>
+      <span>Ver detalle</span>
+    </div>
+  </div>
+
+  <p class="nota">Tres cosas que hacen válido cualquiera de los dos: la casilla
+     empieza <b>sin marcar</b>, rechazar cuesta lo mismo que aceptar, y el texto
+     dice <b>quién</b> trata los datos y <b>para qué</b>. Esto es una muestra
+     para el taller: el texto oficial lo da la Universidad, con su política y su
+     correo de contacto.</p>`;
 const MOMENTOS_5 = [
   { n: 0, parte: 0, titulo: 'Antes de empezar', mins: '',
     html: `
@@ -106,10 +151,11 @@ const MOMENTOS_5 = [
         '<b>Sale.</b> La página pide el resultado y lo muestra. El visitante ve algo que incluye lo que otros dejaron antes.'])}
       <p class="pregunta">Un dato que entra y nunca sale no le sirve a nadie; un dato que sale sin haber sido validado al entrar engaña a todos.</p>` },
 
-  { n: 4, parte: 2, titulo: 'Cinco puntos sobre datos personales en Colombia', mins: '20 min',
+  { n: 4, parte: 2, titulo: 'Seis puntos sobre datos personales en Colombia', mins: '20 min',
     html: `
       <p>Desde hoy el sistema puede guardar datos de personas reales. Esto es lo mínimo que hay que tener presente antes de abrir el formulario al público.</p>
       ${pasosOrdenados(LEY)}
+      ${desplegable('Ver un ejemplo de texto de autorización', EJEMPLO_CONSENTIMIENTO)}
       <p class="nota">Esto es orientación práctica para el taller, no asesoría jurídica: la política de tratamiento de datos de la Universidad manda sobre cualquier sitio que se publique a su nombre, y la SIC publica las guías oficiales en sic.gov.co.</p>` },
 
   { n: 5, parte: 3, titulo: 'Crear el sitio en ChatGPT Sites', mins: '20 min',
@@ -173,7 +219,7 @@ const SESION_5 = montarTaller({
   secciones: { 0: 's5-antes', 1: 's5-parte-1', 2: 's5-parte-2', 3: 's5-parte-3', 4: 's5-cierre' },
   partes: {
     1: 'Arquitectura — las tres capas',
-    2: 'Datos personales — cinco puntos',
+    2: 'Datos personales — seis puntos',
     3: 'Manos a la obra — ChatGPT Sites',
     4: 'Cierre'
   }
